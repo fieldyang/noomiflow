@@ -1,6 +1,6 @@
 {
   "name": "noomiflow",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "nooflow是noomi团队开发的流程引擎",
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",

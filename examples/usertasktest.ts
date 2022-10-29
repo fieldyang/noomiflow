@@ -31,14 +31,14 @@ async function createProcess(){
     // await createProcess();
     //获取流程实例
     const proc = await NFEngine.getInstance(8);
-    proc.start();
+    // proc.start();
     // 取用户的未处理流程
     // const nodes = await NFUserManager.getUnHandleNodes(1);
     // console.log(nodes);
     // 执行节点，根据参数直接end
     // const proc = await NFEngine.getInstance(nodes.rows[2].nfProcess.processId);
-    // proc.setParam('data',1);
-    // await proc.next({userId:1});
+    proc.setParam('data',1);
+    await proc.next({userId:1});
     //根据参数跳转到task2
     // const proc = await NFEngine.getInstance(nodes.rows[2].nfProcess.processId);
     // proc.setParam('data',2);

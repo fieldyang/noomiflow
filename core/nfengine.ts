@@ -74,7 +74,7 @@ export class NFEngine{
     static async getInstance(procId:number):Promise<NFProcess>{
         const em:EntityManager = await getEntityManager();
         const query:Query = em.createQuery(NfProcess.name);
-        const proc:NfProcess = await query.select(['*','nfDefProcess.cfgStr']).where({processId:procId}).getResult();
+        const proc:NfProcess = await query.select(['*','nfDefProcess.*']).where({processId:procId}).getResult();
         let cfg;
         try{
             cfg = JSON.parse(proc.nfDefProcess.cfgStr);

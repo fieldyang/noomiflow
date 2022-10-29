@@ -75,13 +75,13 @@ export class NfDefProcess extends BaseEntity{
 		entity:'NfProcess',
 		mappedBy:'nfDefProcess'
 	})
-	public nfProcesss:Array<NfProcess>;
+	public nfProcesses:Array<NfProcess>;
 
 	constructor(idValue?:number){
 		super();
 		this.processDefId = idValue;
 	}
-	public async getNfProcesss():Promise<Array<NfProcess>>{
-		return this['nfProcesss']?this['nfProcesss']:await EntityProxy.get(this,'nfProcesss');
+	public async getNfProcesses():Promise<Array<NfProcess>>{
+		return this['nfProcesses']?this['nfProcesses']:await EntityProxy.get(this,'nfProcesses');
 	}
 }
