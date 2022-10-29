@@ -1,14 +1,17 @@
 {
   "name": "noomiflow",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "nooflow是noomi团队开发的流程引擎",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/types/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "typescript",
     "javascript",
+    "noomi",
+    "relaen",
     "workflow"
   ],
   "author": "yanglei(fieldyang@163.com)",

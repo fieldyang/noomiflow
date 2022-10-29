@@ -2,6 +2,7 @@ import { NfDefProcess } from "./entity/nfdefprocess";
 import { NfProcess } from "./entity/nfprocess";
 import { NfNode } from "./entity/nfnode";
 import { NFProcess } from "./nfprocess";
+import { EntityManager, getEntityManager, Query } from "relaen";
 /**
  * 流程引擎
  */
@@ -67,30 +68,22 @@ export class NFEngine{
 
     /**
      * 获取流程实例
+     * @param procId    流程实例id
+     * @returns         流程对象
      */
-    static async getInstance(procId:number,userId:number):Promise<NFProcess>{
-        //从缓存获取
-        if(this.processMap.has(procId)){
-            return this.processMap.get(procId);
-        }
-        //从数据库获取
-        const proc = <NfProcess>await NfProcess.find(procId);
-        if(!proc){
-            return null;
-        }
-        
-        const defProc:NfDefProcess = await proc.getNfDefProcess();
-
+    static async getInstance(procId:number):Promise<NFProcess>{
+        const em:EntityManager = await getEntityManager();
+        const query:Query = em.createQuery(NfProcess.name);
+        const proc:NfProcess = await query.select(['*','nfDefProcess.cfgStr']).where({processId:procId}).getResult();
         let cfg;
         try{
-            cfg = JSON.parse(defProc.cfgStr);
+            cfg = JSON.parse(proc.nfDefProcess.cfgStr);
         }catch(e){
             throw "流程定义错误!";
         }
         const process = new NFProcess(cfg);
-        //保存流程实例
         process.instance = proc;
-        this.processMap.set(procId,process);
+        await em.close();
         return process;
     }
 

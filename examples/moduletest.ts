@@ -24,13 +24,13 @@ async function defineProcess(){
     
     //用户流程设置参数
     const nodes = await NFUserManager.getUnHandleNodes(1);
-    const proc = await NFEngine.getInstance(nodes.rows[0].nfProcess.processId,1);
+    const proc = await NFEngine.getInstance(nodes.rows[0].nfProcess.processId);
     proc.setParam('arr',[1,2,3,4,5]);
     await proc.next();
     console.log(proc.getParam());
     
     // const nodes = await NFEngine.getUnHandleNodes(2);
-    // const proc = await NFEngine.getInstance(nodes.rows[0].nfProcess.processId,2);
+    // const proc = await NFEngine.getInstance(nodes.rows[0].nfProcess.processId);
     // proc.setParam('agree',1);
     // await proc.next({userId:2,agree:1,reason:'审核通过'});
 })();
